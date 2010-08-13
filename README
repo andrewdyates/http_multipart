@@ -1,5 +1,5 @@
 http_multipart
-multipart/form-data encoder for Python; HTTP file uploader via POST
+multipart/form-data encoder for Python; HTTP file upload via POST
 
 Copyright © 2010 Andrew D. Yates
 All Rights Reserved.
