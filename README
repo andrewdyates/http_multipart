@@ -1,0 +1,37 @@
+http_multipart
+multipart/form-data encoder for Python; HTTP file uploader via POST
+
+Copyright © 2010 Andrew D. Yates
+All Rights Reserved.
+
+http://github.com/andrewdyates/http_multipart
+git@github.com:andrewdyates/http_multipart.git
+
+Version 1.0
+
+===
+
+References:
+  http://en.wikipedia.org/wiki/MIME#Form_Data
+  http://www.ietf.org/rfc/rfc2388.txt
+  http://code.activestate.com/recipes/146306/
+
+Example:
+  Add a browser-style file upload.
+    >>> upload = Multipart()
+    ... upload.add("b", "BINARY STRING", "filename.pdf")
+
+  Add a standard HTTP POST key and value variable.
+    >>> upload.add("a", "hello")
+
+  Use the populated Multipart upload instance to build HTTP fetch
+  request parameters like for google.appengine.api.urlfetch.fetch().
+
+    >>> request = {
+    ...   'payload' = upload.body,
+    ...   'headers': {
+    ...     'Content-Type': upload.content_type,
+    ...     'Content-Length': upload.length,
+    ...     },
+    ...   'method' = 'POST',
+    ...   }
