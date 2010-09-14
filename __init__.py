@@ -47,7 +47,7 @@ class Multipart(object):
       ...   }
   """
   
-  def __init__(self, fields=None):
+  def __init__(self):
     """Initialize HTTPMulipart to new request.
 
     Args:
@@ -56,7 +56,7 @@ class Multipart(object):
     # prepend 5 dashes to boundary to satisfy legacy ASP web servers
     self._boundary = "-----%s" % base64.urlsafe_b64encode(os.urandom(33))
     self.content_type = "multipart/form-data; boundary=%s" % self._boundary
-    self._fields = fields or []
+    self._fields = []
     self._body = None
     self._update_body = True
 
