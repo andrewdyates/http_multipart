@@ -38,13 +38,17 @@ class Multipart(object):
     request parameters like for google.appengine.api.urlfetch.fetch().
 
       >>> request = {
-      ...   'payload' = upload.body,
+      ...   'payload': upload.body,
       ...   'headers': {
       ...     'Content-Type': upload.content_type,
       ...     'Content-Length': upload.length,
       ...     },
-      ...   'method' = 'POST',
+      ...   'method': 'POST',
       ...   }
+
+    new_request() returns this parameter dictionary for convenience.
+
+      >>> request = upload.new_request({'url': 'example.com/upload'})
   """
   
   def __init__(self):
@@ -59,6 +63,29 @@ class Multipart(object):
     self._fields = []
     self._body = None
     self._update_body = True
+
+  def new_request(self, request=None):
+    """Return new urlfetch.fetch parameters for this file upload.
+
+    Args:
+      request: dict of urlfetch.request parameters [optional]
+    Returns:
+      new urlfetch.fetch parameters dictionary
+    """
+    if not request:
+      request = {}
+    else:
+      request = request.deepcopy()
+      
+    request.update({
+        'payload': self.body,
+        'headers': {
+          'Content-Type': self.content_type,
+          'Content-Length': self.length,
+          },
+        'method': 'POST',
+        })
+    return request
 
   @property
   def body(self):
