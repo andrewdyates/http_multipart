@@ -9,7 +9,6 @@ References:
   http://www.ietf.org/rfc/rfc2388.txt
   http://code.activestate.com/recipes/146306/
 """
-__authors__ = ['"Andrew D. Yates", <andrew.yates@hhmds.com>']
 
 
 import base64
