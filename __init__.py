@@ -10,7 +10,6 @@ References:
   http://code.activestate.com/recipes/146306/
 """
 
-
 import base64
 import mimetypes
 import os
